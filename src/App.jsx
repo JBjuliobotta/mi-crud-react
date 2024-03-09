@@ -1,11 +1,29 @@
+import NavBar from "./Components/NavBar"
+import Foot from "./Components/Foot"
+import { BrowserRouter, Routes, Route } from "react-router-dom"
+import Home from "./Components/Pages/Home"
+import AcercaDeNosotros from "./Components/Pages/AcercaDeNosotros"
+import Administracion from "./Components/Pages/Administracion"
 
 function App() {
   
   return (
     <>
-      <div>
-        <h1>Hello Crud</h1>
-      </div>
+    <BrowserRouter>
+    <header>
+      <NavBar/>
+    </header>
+    <main>
+      <Routes>
+        <Route path="/" element={<Home/>}/>
+        <Route path="/acercadenosotros" element={<AcercaDeNosotros/>}/>
+        <Route path="/administracion" element={<Administracion/>}/>
+      </Routes>
+    </main>
+    <footer>
+      <Foot/>
+    </footer>
+    </BrowserRouter>
     </>
   )
 }
