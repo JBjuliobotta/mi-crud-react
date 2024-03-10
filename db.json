@@ -1,0 +1,28 @@
+{
+  "productos": [
+    {
+      "id": "97a2",
+      "title": "Coca cola",
+      "description": "coca de vidrio",
+      "category": "Bebidas"
+    },
+    {
+      "id": "f84b",
+      "title": "alfajor grandote",
+      "description": "alfajor de chocolate",
+      "category": "Alimentos"
+    },
+    {
+      "id": "5185",
+      "title": "pepsi",
+      "description": "asdkjagksjdkas",
+      "category": "Bebidas"
+    },
+    {
+      "id": "9ed5",
+      "title": "pepsi",
+      "description": "bebida sabor cola",
+      "category": "Bebidas"
+    }
+  ]
+}
