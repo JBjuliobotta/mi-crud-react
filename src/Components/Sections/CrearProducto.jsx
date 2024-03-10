@@ -3,39 +3,87 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 //import { validarCategoria } from "../../helpers/validaciones";
 import clsx from "clsx";
-import * as Yup from "yup"
+import * as Yup from "yup";
 import { useFormik } from "formik";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
+
 
 const CrearProducto = () => {
   //los productos van a tener las siguientes props: titulo, categoría y además un indentificador único
   //const [title, setTitle] = useState("");
   //const [description, setDescription] = useState("");
   //const [category, SetCategory] = useState("");
-  const ProdcutoSchema=Yup.object().shape(
-    {
-      title: Yup.string().min(4, "min. 4 caracteres").max(20, "máx. 20 caracteres").required("el campo es requerido"),
-      description: Yup.string().min(4).max(200).required("el campo es requerido"),
-      category: Yup.string().required("el campo es requerido")
-    }
-  );
 
-  const initialValues={
-    title:'',
-    description:'',
-    category:'',
+  //UTILIZAMOS LA VARIABLE DE ENTORNO
+  const API = import.meta.env.VITE_API;
+  //console.log("API-->", API);
+
+  //UTILIZAMOS useNavigate
+  const navigate = useNavigate();
+  //inicio config formik
+
+  const ProdcutoSchema = Yup.object().shape({
+    title: Yup.string()
+      .min(4, "min. 4 caracteres")
+      .max(20, "máx. 20 caracteres")
+      .required("el campo es requerido"),
+    description: Yup.string().min(4).max(200).required("el campo es requerido"),
+    category: Yup.string().required("el campo es requerido"),
+  });
+
+  const initialValues = {
+    title: "",
+    description: "",
+    category: "",
   };
 
-  const formik=useFormik({
+  const formik = useFormik({
     initialValues,
     validationSchema: ProdcutoSchema,
     validateOnBlur: true,
     validateOnChange: true,
-    onSubmit: (values)=>{
+    onSubmit: (values) => {
       console.log("values de formik->", values);
-    }
-  })
+      Swal.fire({
+        title: "Estás seguro de guardar éste producto?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Guardar"
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          try {
+            const response = await fetch(`${API}/productos`, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(values),
+            });
+            //console.log("RESPONSE", response);
+            //console.log(response.status);
+            if (response.status === 201) {
+              formik.resetForm();
+              Swal.fire({
+                title: "Éxito!",
+                text: "Se creó un nuevo producto",
+                icon: "success"
+              });
+            }
+          } catch (error) {
+            console.log("ERROR-->", error);
+          }
 
- /* const handleSubmit = (e) => {
+        }
+      });
+      
+    },
+  });
+  //fin config formik
+
+  /* const handleSubmit = (e) => {
     e.preventDefault();
     console.log("desde submit");
     const nuevoProducto = {
@@ -48,6 +96,7 @@ const CrearProducto = () => {
 
   return (
     <div className="container py-3 my-3">
+      <Button variant="secondary" onClick={()=>navigate(-1)}>Atras</Button> {/*se puede usar el menos 1 si es para volver una vez*/ }
       <div className="text-center">
         <h2>Crear Producto</h2>
       </div>
@@ -64,13 +113,15 @@ const CrearProducto = () => {
               setTitle(e.currentTarget.value);
             }}*/
             name="title"
-            {...formik.getFieldProps('title')}
-            className={clsx('form-control',{
-              'is-invalid': formik.touched.title && formik.errors.title
-            },
-            {
-              'is-valid': formik.touched.title && !formik.errors.title
-            }
+            {...formik.getFieldProps("title")}
+            className={clsx(
+              "form-control",
+              {
+                "is-invalid": formik.touched.title && formik.errors.title,
+              },
+              {
+                "is-valid": formik.touched.title && !formik.errors.title,
+              }
             )}
           />
           {formik.touched.title && formik.errors.title && (
@@ -94,13 +145,17 @@ const CrearProducto = () => {
             //  setDescription(e.currentTarget.value);
             //}}
             name="description"
-            {...formik.getFieldProps('description')}
-            className={clsx('form-control',{
-              'is-invalid': formik.touched.description && formik.errors.description
-            },
-            {
-              'is-valid': formik.touched.description && !formik.errors.description
-            }
+            {...formik.getFieldProps("description")}
+            className={clsx(
+              "form-control",
+              {
+                "is-invalid":
+                  formik.touched.description && formik.errors.description,
+              },
+              {
+                "is-valid":
+                  formik.touched.description && !formik.errors.description,
+              }
             )}
           />
           {formik.touched.description && formik.errors.description && (
@@ -128,13 +183,15 @@ const CrearProducto = () => {
             }
             )}*/
             name="category"
-            {...formik.getFieldProps('category')}
-            className={clsx('form-control',{
-              'is-invalid': formik.touched.category && formik.errors.category
-            },
-            {
-              'is-valid': formik.touched.category && !formik.errors.category
-            }
+            {...formik.getFieldProps("category")}
+            className={clsx(
+              "form-control",
+              {
+                "is-invalid": formik.touched.category && formik.errors.category,
+              },
+              {
+                "is-valid": formik.touched.category && !formik.errors.category,
+              }
             )}
           >
             <option value="">Seleccione una categoría</option>
