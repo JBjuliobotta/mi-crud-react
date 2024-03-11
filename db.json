@@ -17,18 +17,6 @@
       "description": "bebida gaseosa sabor cola en envase de vidrio",
       "category": "Bebidas",
       "id": "5185"
-    },
-    {
-      "title": "pepsi max",
-      "description": "bebida gaseosa sabor cola light",
-      "category": "Bebidas",
-      "id": "9ed5"
-    },
-    {
-      "id": "bdcc",
-      "title": "mr musculo",
-      "description": "mr musculo para baños envase por 250ml",
-      "category": "Limpieza"
     }
   ]
 }

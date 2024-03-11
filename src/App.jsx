@@ -6,6 +6,7 @@ import AcercaDeNosotros from "./Components/Pages/AcercaDeNosotros"
 import Administracion from "./Components/Pages/Administracion"
 import CrearProducto from "./Components/Sections/CrearProducto"
 import Editar from "./Components/Sections/Editar"
+import Error404 from "./Components/Pages/Error404"
 
 function App() {
   
@@ -22,6 +23,7 @@ function App() {
         <Route path="/administracion" element={<Administracion/>}/>
         <Route path="/crearproducto" element={<CrearProducto/>}/>
         <Route path="/editar/:id" element={<Editar/>}/>
+        <Route path="/*" element={<Error404/>}/>
       </Routes>
     </main>
     <footer>
