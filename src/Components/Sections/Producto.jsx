@@ -1,7 +1,7 @@
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
-const Producto = ({producto}) => {
+const Producto = ({producto , handleShow}) => {
   const navigate = useNavigate();
 
   return (
@@ -15,6 +15,10 @@ const Producto = ({producto}) => {
             <Button type="buton" variant="warning" onClick={()=>{
               navigate(`/editar/${producto.id}`)
             }}>Editar</Button>
+            <Button type="button" variant="success" onClick={()=>{
+              console.log("desde modal edicion");
+              handleShow(producto);
+            }}>M.Eliminar</Button>
             <Button type="button" variant="danger" onClick={()=>{
               console.log("desde boton elimnar");
             }}>Eliminar</Button>

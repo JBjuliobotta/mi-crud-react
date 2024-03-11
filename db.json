@@ -1,10 +1,10 @@
 {
   "productos": [
     {
-      "id": "97a2",
-      "title": "Coca cola",
-      "description": "coca de vidrio",
-      "category": "Bebidas"
+      "title": "coca de 2lts",
+      "description": "coca de vidrio de 2 lts",
+      "category": "Bebidas",
+      "id": "97a2"
     },
     {
       "title": "alfajor grandote x3",
@@ -19,10 +19,16 @@
       "id": "5185"
     },
     {
-      "id": "9ed5",
-      "title": "pepsi",
-      "description": "bebida sabor cola",
-      "category": "Bebidas"
+      "title": "pepsi max",
+      "description": "bebida gaseosa sabor cola light",
+      "category": "Bebidas",
+      "id": "9ed5"
+    },
+    {
+      "id": "bdcc",
+      "title": "mr musculo",
+      "description": "mr musculo para baños envase por 250ml",
+      "category": "Limpieza"
     }
   ]
 }

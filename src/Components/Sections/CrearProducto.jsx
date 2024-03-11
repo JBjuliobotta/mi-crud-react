@@ -71,6 +71,7 @@ const CrearProducto = () => {
                 text: "Se creó un nuevo producto",
                 icon: "success"
               });
+              navigate('/administracion');
             }
           } catch (error) {
             console.log("ERROR-->", error);
