@@ -5,6 +5,7 @@ import Home from "./Components/Pages/Home"
 import AcercaDeNosotros from "./Components/Pages/AcercaDeNosotros"
 import Administracion from "./Components/Pages/Administracion"
 import CrearProducto from "./Components/Sections/CrearProducto"
+import Editar from "./Components/Sections/Editar"
 
 function App() {
   
@@ -20,6 +21,7 @@ function App() {
         <Route path="/acercadenosotros" element={<AcercaDeNosotros/>}/>
         <Route path="/administracion" element={<Administracion/>}/>
         <Route path="/crearproducto" element={<CrearProducto/>}/>
+        <Route path="/editar/:id" element={<Editar/>}/>
       </Routes>
     </main>
     <footer>
